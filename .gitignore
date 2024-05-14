@@ -1,0 +1,8 @@
+.env
+.idea
+tmp
+*_templ.go
+*_templ.txt
+test.html
+tailwind
+*.db

@@ -1,0 +1,41 @@
+package uicomponents
+
+templ MainHeader(title string) {
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="description" content="Your description here"/>
+		<meta name="keywords" content="Your, Keywords, Here"/>
+		<meta name="author" content="Your Name"/>
+		<title>{ title }</title>
+		<link rel="stylesheet" href="/static/css/style.css"/>
+		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+		<script src="https://unpkg.com/htmx.org@1.9.12"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+		<style>
+			.material-symbols-outlined {
+				font-variation-settings:
+				'FILL' 1,
+				'wght' 400,
+				'GRAD' 0,
+				'opsz' 24
+			}
+		</style>
+	</head>
+}
+
+templ MainFooter() {
+}
+
+templ MainLayout(title string, content templ.Component) {
+	<!DOCTYPE html>
+	<html lang="en">
+		@MainHeader(title)
+		<body>
+			<div class="h-6"></div>
+			<main class="" id="maincontent">
+				@content
+			</main>
+		</body>
+	</html>
+}
