@@ -3,7 +3,6 @@ package homepagecontroller
 import (
 	"fmt"
 	"os"
-	"strconv"
 	"talibox/controllers/Models"
 	"talibox/inits"
 	"talibox/models"
@@ -11,14 +10,15 @@ import (
 	uicomponents "talibox/views/UiComponents"
 	"talibox/views/uiModels"
 
+	"github.com/a-h/templ"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/labstack/echo/v4"
 )
 
 func GetHomePage() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		var sub int
 		var name string
+		var content templ.Component
 		cookie, err := c.Cookie("jwt")
 		if err == nil {
 			claims := &Models.JwtCustomClaims{}
@@ -36,21 +36,17 @@ func GetHomePage() echo.HandlerFunc {
 				fmt.Println("ERROR: " + result.Error.Error())
 			}
 
+			users := []models.User{}
+			inits.DB.Find(&users)
+			content = homepage.GenericTable(users)
+
 			name = user.UserBasic.FullName
-			sub = int(claims.Sub)
 
 		} else {
-			sub = 0
 			name = "Guest"
-			// err := c.Redirect(302, "/login")
-			// if err != nil {
-			// fmt.Println(err)
-			// }
-		}
+			content = homepage.HomeContent()
 
-		content := homepage.HomeContent(
-			strconv.Itoa(sub),
-		)
+		}
 
 		return uicomponents.MainLayout("Home Page", homepage.HomeContainer(
 			content,
@@ -59,6 +55,11 @@ func GetHomePage() echo.HandlerFunc {
 				{
 					Title: "Home",
 					Ref:   "/",
+					Icon:  "home",
+				},
+				{
+					Title: "Weekly Grosses",
+					Ref:   "/grossess",
 					Icon:  "movie",
 				},
 				{

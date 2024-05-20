@@ -1,6 +1,8 @@
 package models
 
 import (
+	"strconv"
+
 	"gorm.io/gorm"
 )
 
@@ -19,4 +21,21 @@ type User struct {
 	UserBasic UserSignUp `gorm:"embedded"`
 	Movies    []Movie    `gorm:"many2many:tracking"`
 	Admin     bool
+}
+
+func (u User) GetFields() []string {
+	return []string{"ID", "Full Name", "Username", "Admin"}
+}
+
+func (u User) GetFieldsValues() []string {
+	return []string{
+		strconv.FormatInt(int64(u.ID), 10),
+		u.UserBasic.FullName,
+		u.UserBasic.UserLogin.Username,
+		strconv.FormatBool(u.Admin),
+	}
+}
+
+func (u User) GetInstanceName() string {
+	return "User"
 }

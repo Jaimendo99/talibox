@@ -1,15 +1,16 @@
 package models
 
 import (
-	"gorm.io/gorm"
 	"time"
+
+	"gorm.io/gorm"
 )
 
 type WeeklyGrosses struct {
 	gorm.Model
 	Movie     Movie `gorm:"foreignKey:MovieId"`
 	MovieId   int
-	weekStart time.Time
-	weekEnd   time.Time
+	WeekStart time.Time
+	WeekEnd   time.Time
 	Gross     float64
 }

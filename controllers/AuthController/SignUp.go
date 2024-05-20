@@ -2,13 +2,15 @@ package AuthController
 
 import (
 	"errors"
-	"github.com/labstack/echo/v4"
-	"golang.org/x/crypto/bcrypt"
 	"net/http"
 	"talibox/controllers/Models"
 	"talibox/inits"
 	"talibox/models"
+	homepage "talibox/views/HomePage"
 	"unicode"
+
+	"github.com/labstack/echo/v4"
+	"golang.org/x/crypto/bcrypt"
 )
 
 func SignUp() echo.HandlerFunc {
@@ -45,7 +47,7 @@ func SignUp() echo.HandlerFunc {
 			return c.JSON(http.StatusInternalServerError, Models.FailResponse{Message: dbResult.Error.Error()})
 		}
 
-		return c.JSON(200, Models.FailResponse{Message: string("User created successfully")})
+		return homepage.GenTableRow(user.GetFieldsValues(), user.GetInstanceName()).Render(c.Request().Context(), c.Response().Writer)
 	}
 }
 

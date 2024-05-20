@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"talibox/Routes/AuthRoutes"
+	features "talibox/Routes/Features"
 	uiroutes "talibox/Routes/UiRoutes"
 	"talibox/inits"
 
@@ -25,16 +26,17 @@ func init() {
 }
 
 func main() {
+
 	e := echo.New()
 
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-
-	AuthRoutes.DefineAuthRoutes(e)
-
 	m := echojwt.WithConfig(inits.Config)
 
-	fmt.Print(m)
+	AuthRoutes.DefineAuthRoutes(e)
+	uiroutes.DefineUserRoutes(e, m)
+	features.DefineUserFeaturesRoutes(e, m)
+	uiroutes.DefineGrossessRoutes(e)
 
 	uiroutes.DefineHomeRoutes(e)
 
