@@ -1,0 +1,31 @@
+package Grosess
+
+import (
+	"talibox/views/uiModels"
+	"strconv"
+)
+
+templ HistoricGrossess(weeklyGroses []uiModels.WeeklyTopGross) {
+	<table class="m-14">
+		<tr>
+			<th class="m-52">Year</th>
+			<th>Week</th>
+			<th>Total Gross</th>
+			<th>Top Grosser</th>
+		</tr>
+		<tbody>
+			for _, weeklyGroses := range weeklyGroses {
+				@historicGross(weeklyGroses)
+			}
+		</tbody>
+	</table>
+}
+
+templ historicGross(WeeklyGross uiModels.WeeklyTopGross) {
+	<tr>
+		<td>{ WeeklyGross.Year } </td>
+		<td>{ WeeklyGross.Week } </td>
+		<td>{ strconv.FormatInt(int64(WeeklyGross.TotalGross),10) } </td>
+		<td>{ WeeklyGross.Top5Grossers[0].Release } </td>
+	</tr>
+}

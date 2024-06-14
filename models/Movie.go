@@ -2,23 +2,21 @@ package models
 
 import (
 	"strconv"
-	"time"
 
 	"gorm.io/gorm"
 )
 
 type Movie struct {
 	gorm.Model
-	ImdbId      string `gorm:"unique"`
 	Title       string
+	RealeseId   string         `gorm:"unique"`
 	Genres      []GenreCatalog `gorm:"many2many:genre"`
-	ReleaseDate time.Time
-	DirectorId  uint
-	Director    Professional `gorm:"foreignKey:DirectorId"`
+	Year        int
+	ReleaseDate string
 }
 
 func (m Movie) GetFields() []string {
-	return []string{"ID", "Title", "Genres", "Release Date", "Director"}
+	return []string{"ID", "Realese ID", "Title", "Genres", "Release Date"}
 }
 
 func (m Movie) GetFieldsValues() []string {
@@ -28,10 +26,10 @@ func (m Movie) GetFieldsValues() []string {
 	}
 	return []string{
 		strconv.FormatUint(uint64(m.ID), 10),
+		m.RealeseId,
 		m.Title,
 		genres,
-		m.ReleaseDate.String(),
-		m.Director.ArtisticName,
+		m.ReleaseDate,
 	}
 }
 

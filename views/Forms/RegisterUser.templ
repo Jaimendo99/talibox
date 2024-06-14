@@ -7,16 +7,13 @@ import (
 	"strconv"
 )
 
-templ RegisterForm() {
+templ RegisterForm(attr templ.Attributes) {
 	<h3 class="text-2xl font-semibold leading-7 text-gray-900 text-center tracking-tight">
 		Register here
 	</h3>
 	<br/>
 	<form
-		hx-post="/users"
-		hx-swap="afterend transition:true"
-		hx-target="#Usertable"
-		@submit="open=false"
+		{ attr... }
 	>
 		@Input(uiModels.InputModel{Name: "FullName", Value: "", Label: "Full Name", Id: "RUNameInput", Placeholder: "Jaime Mendoza Zambrano", Type: "text"})
 		<br/>

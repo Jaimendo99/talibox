@@ -1,0 +1,19 @@
+.htmx-request.htmx-indicator {
+    /* display: inline; */
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff8f;
+    box-shadow: 0 0 20px 100px #ffffff8f;
+}
+
+.containerTool {
+    word-break: keep-all !important;
+    /* This will break words at any character if needed */
+}
+
+.containerTool::after {
+    content: " ";
+    /* Add space to ensure last word breaks properly */
+    display: inline-block;
+    width: 0;
+}

@@ -5,12 +5,20 @@ import (
 	"talibox/models"
 	"talibox/views/Forms"
 
+	"github.com/a-h/templ"
 	"github.com/labstack/echo/v4"
 )
 
 func GetUserForm() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		return Forms.RegisterForm().Render(c.Request().Context(), c.Response().Writer)
+
+		return Forms.RegisterForm(
+			templ.Attributes{
+				"@submit":   "open=false",
+				"hx-post":   "/users",
+				"hx-swap":   "afterend transition:true",
+				"hx-target": "#Usertable"},
+		).Render(c.Request().Context(), c.Response().Writer)
 	}
 }
 

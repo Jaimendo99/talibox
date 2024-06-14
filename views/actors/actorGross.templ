@@ -1,0 +1,47 @@
+package actors
+
+import (
+	models1 "talibox/controllers/Models"
+	"strconv"
+)
+
+templ ActorGrossView(actorsGross []models1.ActorGross) {
+	<div class="container mx-auto p-4">
+		<h1 class="text-2xl font-bold mb-4">Actors Gross Earnings</h1>
+		<table class="min-w-full bg-white border">
+			<thead>
+				<tr>
+					<th class="py-2 px-4 border">Actor</th>
+					<th class="py-2 px-4 border">Gross Earnings</th>
+				</tr>
+			</thead>
+			<tbody>
+				for _, actorGross := range actorsGross {
+					<tr>
+						<td class="py-2 px-4 border">{ actorGross.Actor }</td>
+						<td class="py-2 px-4 border">{ formatCurrency(actorGross.Gross) }</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+}
+
+// formatCurrency converts an int64 to a currency string.
+func formatCurrency(value int64) string {
+	return "$" + strconv.FormatInt(value, 10)
+}
+
+templ ActorInputs() {
+	<form
+		hx-post="/core"
+		hx-trigger="submit"
+		hx-swap="outerHTML"
+		hx-target="#actorsGross"
+	>
+		<input class="bg-slate-400" name="weekStart"/>
+		<input class="bg-slate-500" name="weekEnd"/>
+		<button type="submit">Submit</button>
+	</form>
+	<div id="actorsGross"></div>
+}

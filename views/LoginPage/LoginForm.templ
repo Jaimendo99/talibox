@@ -2,25 +2,52 @@ package loginpage
 
 import (
 	"talibox/views/UiComponents"
+	"talibox/views/uiModels"
+	"talibox/views/Forms"
+	"talibox/views/HomePage"
 )
 
-templ LoginForm() {
-	<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+templ LoginForm(usernameform, passwordform uiModels.InputModel, erros []uiModels.ErrorModel) {
+	<div id="loginComp" class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
 		@LoginHeader()
 		<div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
 			<form
 				class="space-y-6"
 				hx-post="/login"
-				hx-target="#maincontent"
 				hx-swap="outerHTML transition:true"
-				hx-push-url="/"
+				hx-target="#loginComp"
 			>
-				@uicomponents.TextField("username", "Username")
-				@uicomponents.TextFieldPass()
+				@uicomponents.TextField(usernameform)
+				@uicomponents.TextField(passwordform)
+				if len(erros) > 0 {
+					@Errorlist(erros)
+				}
 				@uicomponents.LoginButton()
 			</form>
-			@LoginFooter()
+			<div x-data="{ rgopen: false }">
+				@LoginFooter()
+				<div @click.outside="rgopen=false" class="w-max h-max">
+					@homepage.FloatingCard(Forms.RegisterForm(
+						templ.Attributes{
+							"@submit":     "rgopen=false",
+							"hx-post":     "/users",
+							"hx-redirect": "/",
+						}),
+						"rgopen",
+					)
+				</div>
+			</div>
 		</div>
+	</div>
+}
+
+templ Errorlist(errors []uiModels.ErrorModel) {
+	<div class="mt-2">
+		<ul role="list" class="divide-y divide-gray-200 rounded-md border border-red-400 bg-red-100">
+			for _,r := range errors {
+				<li class="px-4 py-3 text-sm text-red-700">{ r.Message }</li>
+			}
+		</ul>
 	</div>
 }
 
@@ -34,7 +61,7 @@ templ LoginHeader() {
 templ LoginFooter() {
 	<p class="mt-10 text-center text-sm text-gray-500">
 		Not a member?
-		<a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Register here!</a>
+		<a @click="rgopen = !rgopen" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Register here!</a>
 	</p>
 }
 

@@ -6,6 +6,7 @@ import (
 	"talibox/controllers/Models"
 	"talibox/inits"
 	"talibox/models"
+	"talibox/views/Grosess"
 	homepage "talibox/views/HomePage"
 	uicomponents "talibox/views/UiComponents"
 	"talibox/views/uiModels"
@@ -17,8 +18,7 @@ import (
 
 func GetHomePage() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		var name string
-		var content templ.Component
+
 		cookie, err := c.Cookie("jwt")
 		if err == nil {
 			claims := &Models.JwtCustomClaims{}
@@ -38,36 +38,109 @@ func GetHomePage() echo.HandlerFunc {
 
 			users := []models.User{}
 			inits.DB.Find(&users)
-			content = homepage.GenericTable(users)
 
-			name = user.UserBasic.FullName
+			if user.Admin {
+				return PageDefaultContainer(
+					true,
+					homepage.GenericTable(users),
+					"Home Page",
+					user.UserBasic.FullName,
+				).Render(c.Request().Context(), c.Response().Writer)
+			}
 
-		} else {
-			name = "Guest"
-			content = homepage.HomeContent()
-
+			return PageDefaultContainer(
+				false,
+				Grosess.GetChart(),
+				"Home Page",
+				user.UserBasic.FullName,
+			).Render(c.Request().Context(), c.Response().Writer)
 		}
 
-		return uicomponents.MainLayout("Home Page", homepage.HomeContainer(
+		return PageDefaultContainer(
+			false,
+			homepage.HomeContent(),
+			"Home Page",
+			"Guest",
+		).Render(c.Request().Context(), c.Response().Writer)
+	}
+}
+
+func PageDefaultContainer(isAdmin bool, content templ.Component, title, name string) templ.Component {
+
+	barItems := []uiModels.BarItem{
+
+		{
+			Title:   "Weekly Grosses",
+			Ref:     "/grossess/chart",
+			Icon:    "movie",
+			Swap:    "innerHTML transition:true",
+			Target:  "#homecontent",
+			PushUrl: "true",
+		},
+		{
+			Title:   "Historic Weekly Grosses",
+			Ref:     "/grossess/historic",
+			Icon:    "tv",
+			Swap:    "innerHTML transition:true",
+			Target:  "#homecontent",
+			PushUrl: "true",
+		}, {
+			Title:   "Insights",
+			Ref:     "/stats",
+			Icon:    "query_stats",
+			Swap:    "innerHTML transition:true",
+			Target:  "#homecontent",
+			PushUrl: "true",
+		},
+		{
+			Title:   "core",
+			Ref:     "/actor",
+			Icon:    "person",
+			Swap:    "innerHTML transition:true",
+			Target:  "#homecontent",
+			PushUrl: "true",
+		},
+		{
+			Title:   "Search Movies",
+			Ref:     "/search",
+			Icon:    "search",
+			Swap:    "innerHTML transition:true",
+			Target:  "#homecontent",
+			PushUrl: "true",
+		},
+
+		{
+			Title:   "Login",
+			Ref:     "/login",
+			Icon:    "person",
+			Swap:    "innerHTML transition:true",
+			Target:  "body",
+			PushUrl: "true",
+		},
+	}
+
+	if isAdmin {
+		adminItem := []uiModels.BarItem{
+			{
+				Title:   "Home",
+				Ref:     "/",
+				Icon:    "home",
+				Swap:    "innerHTML transition:true",
+				Target:  "body",
+				PushUrl: "true",
+			},
+		}
+
+		barItems = append(
+			adminItem,
+			barItems...,
+		)
+	}
+
+	return uicomponents.MainLayout(title,
+		homepage.HomeContainer(
 			content,
 			name,
-			[]uiModels.BarItem{
-				{
-					Title: "Home",
-					Ref:   "/",
-					Icon:  "home",
-				},
-				{
-					Title: "Weekly Grosses",
-					Ref:   "/grossess",
-					Icon:  "movie",
-				},
-				{
-					Title: "Login",
-					Ref:   "/login",
-					Icon:  "person",
-				},
-			},
-		)).Render(c.Request().Context(), c.Response().Writer)
-	}
+			barItems,
+		))
 }

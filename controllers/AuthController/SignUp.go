@@ -38,7 +38,7 @@ func SignUp() echo.HandlerFunc {
 					Password: string(hash),
 				},
 			},
-			Admin:  false,
+			Admin:  true,
 			Movies: nil,
 		}
 

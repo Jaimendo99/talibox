@@ -1,0 +1,17 @@
+package Grosess
+
+templ GetChart() {
+	<div
+		hx-get="/grossess/chart"
+		hx-trigger="load"
+		hx-indicator=".htmx-indicator"
+	></div>
+}
+
+templ GetCoreData() {
+	<div
+		hx-get="/grossess/historic"
+		hx-trigger="load"
+		hx-indicator=".htmx-indicator"
+	></div>
+}

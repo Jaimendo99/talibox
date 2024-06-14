@@ -4,7 +4,5 @@ import "gorm.io/gorm"
 
 type Professional struct {
 	gorm.Model
-	ImdbId       string `gorm:"unique"`
-	ArtisticName string
-	FullName     string
+	ArtisticName string `gorm:"unique"`
 }

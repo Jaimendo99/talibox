@@ -26,7 +26,6 @@ func init() {
 }
 
 func main() {
-
 	e := echo.New()
 
 	e.Use(middleware.Logger())
@@ -37,6 +36,7 @@ func main() {
 	uiroutes.DefineUserRoutes(e, m)
 	features.DefineUserFeaturesRoutes(e, m)
 	uiroutes.DefineGrossessRoutes(e)
+	uiroutes.DefineSearchRoutes(e)
 
 	uiroutes.DefineHomeRoutes(e)
 
