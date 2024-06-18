@@ -1,0 +1,6 @@
+<div class=\"container mx-auto p-4\"><h1 class=\"text-2xl font-bold mb-4\">Actors Gross Earnings</h1><table class=\"min-w-full bg-white border\"><thead><tr><th class=\"py-2 px-4 border\">Actor</th><th class=\"py-2 px-4 border\">Gross Earnings</th></tr></thead> <tbody>
+<tr><td class=\"py-2 px-4 border\">
+</td><td class=\"py-2 px-4 border\">
+</td></tr>
+</tbody></table></div>
+<form hx-post=\"/core\" hx-trigger=\"submit\" hx-swap=\"outerHTML\" hx-target=\"#actorsGross\"><input class=\"bg-slate-400\" name=\"weekStart\"> <input class=\"bg-slate-500\" name=\"weekEnd\"> <button type=\"submit\">Submit</button></form><div id=\"actorsGross\"></div>

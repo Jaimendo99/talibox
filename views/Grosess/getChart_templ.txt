@@ -1,0 +1,2 @@
+<div hx-get=\"/grossess/chart\" hx-trigger=\"load\" hx-indicator=\".htmx-indicator\"></div>
+<div hx-get=\"/grossess/historic\" hx-trigger=\"load\" hx-indicator=\".htmx-indicator\"></div>

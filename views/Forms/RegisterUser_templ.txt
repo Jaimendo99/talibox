@@ -1,0 +1,13 @@
+<h3 class=\"text-2xl font-semibold leading-7 text-gray-900 text-center tracking-tight\">Register here</h3><br><form
+>
+<br>
+<br>
+<br>
+</form>
+<h3 class=\"text-2xl font-semibold leading-7 text-gray-900 text-center tracking-tight\">Update your information</h3><br><form hx-patch=\"
+\" hx-swap=\"outerHTML transition:true\" hx-target=\"
+\" @submit=\"open=false\">
+<br>
+<br>
+<br>
+</form>

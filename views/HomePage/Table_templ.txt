@@ -1,0 +1,25 @@
+<div class=\"px-4 sm:px-6 lg:px-8\" x-data=\"{ open: false }\"><div class=\"sm:flex sm:items-center\"><div class=\"sm:flex-auto\"><h1 class=\"text-base font-semibold leading-6 text-gray-900\"></h1></div><div class=\"mt-4 sm:ml-16 sm:mt-0 sm:flex-none\"><button type=\"button\" hx-get=\"
+\" hx-swap=\"innerHTML transition:true\" hx-target=\"#formCard\" @click=\"open = !open\" class=\"block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600\"><span class=\"shrink-0 material-symbols-outlined\">add</span></button>
+</div></div><div class=\"mt-8 flow-root\"><div class=\"-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8\"><div class=\"inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8\"><div class=\"overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg\"><table class=\"min-w-full divide-y divide-gray-300\"><thead class=\"bg-gray-50\">
+</thead> <tbody id=\"
+\" class=\"divide-y divide-gray-200 bg-white\">
+</tbody></table></div></div></div></div></div>
+<tr id=\"
+\"><td class=\"whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6\">
+</td>
+<td class=\"whitespace-nowrap px-3 py-4 text-sm text-gray-500\">
+</td>
+<td class=\"relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6\"><a hx-get=\"
+\" hx-swap=\"innerHTML transition:true\" hx-target=\"#formCard\" @click=\"open = true\" class=\"text-indigo-600 hover:text-indigo-900 cursor-pointer\"><span class=\"h-6 w-6 shrink-0 material-symbols-outlined\">edit</span></a> <a hx-delete=\"
+\" hx-confirm=\"Are you sure you want to delete this user?\" hx-target=\"
+\" hx-swap=\"transition:true\" class=\"text-pink-800 hover:text-rose-900\"><span class=\"h-6 w-6 shrink-0 material-symbols-outlined\">delete</span></a></td></tr>
+<tr><th scope=\"col\" class=\"py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6\">
+</th>
+<th scope=\"col\" class=\"px-3 py-3.5 text-left text-sm font-semibold text-gray-900\">
+</th>
+<th scope=\"col\" class=\"relative py-3.5 pl-3 pr-4 sm:pr-6\"><span class=\"sr-only\">Edit</span></th></tr>
+<div x-show=\"open\" class=\"relative z-40\" role=\"dialog\"><div class=\"fixed inset-0 bg-gray-500 bg-opacity-25 transition-opacity\"></div><div class=\"fixed inset-0 z-40 w-screen overflow-y-auto p-4 sm:p-6 md:p-20\"><div class=\"mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all\"><div @click.outside=\"open = false\" class=\"relative p-8\" id=\"formCard\"></div></div></div></div>
+<div x-show=\"
+\" class=\"relative z-40\" role=\"dialog\"><div class=\"fixed inset-0 bg-gray-500 bg-opacity-25 transition-opacity\"></div><div class=\"fixed inset-0 z-40 w-screen overflow-y-auto p-4 sm:p-6 md:p-20\"><div class=\"mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all\"><div @click.outside=\"
+\" class=\"relative p-8\" id=\"formCard\">
+</div></div></div></div>

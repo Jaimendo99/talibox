@@ -1,0 +1,1 @@
+<div><h1>Home</h1><p>Welcome to the homepage</p><p>since you are not logged in, you can't see the secret page. <a href=\"/login\">Login</a></p></div>

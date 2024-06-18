@@ -1,0 +1,7 @@
+<table class=\"m-14\"><tr><th class=\"m-52\">Year</th><th>Week</th><th>Total Gross</th><th>Top Grosser</th></tr><tbody>
+</tbody></table>
+<tr><td>
+</td><td>
+</td><td>
+</td><td>
+</td></tr>
