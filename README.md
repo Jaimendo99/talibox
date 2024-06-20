@@ -9,7 +9,7 @@
 
 <p align="center"> A Web Development Project for UDLA's Web Development Course
     <br> 
-    You can see the project live at <a href="core.jaimendo.online">core.jaimendo.online</a>
+    You can see the project live at <a href="https://core.jaimendo.online">core.jaimendo.online</a>
 </p>
 
 ## 📝 Table of Contents
