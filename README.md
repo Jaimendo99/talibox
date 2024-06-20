@@ -1,6 +1,5 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
 </p>
 
 <h3 align="center">TALIBOX</h3>
@@ -19,14 +18,10 @@
 - [Deployment](#deployment)
 - [Usage](#usage)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
 
-FastFit is in a nutshell a fasting tracker and a calorie counter. It helps you keep track of your fasting hours and your daily calorie intake.
+Talibox is a web app that helps you track box office movies, it has a simple interface that allows you to see the latest movies, search for movies, and see the details of each movie. It also has an admin interface that allows you to add, edit, and delete movies. 
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -70,51 +65,21 @@ JWT_SECRET
 ```
 #### Diagram
 
-<img src = "./static/img/admin_diagram@100x.png"/>
+<img src = "./static/img/jwtFlow.png"/>
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
+The best way to self host this app is by using the dockerfile provided in the project, you can build the image by running the following command:
 
-Say what the step will be
-
+Clone the project
+```bash
+git clone Jaimendo99/talibox
 ```
-Give the example
+Build the image
+```bash
+docker build -t talibox .
 ```
-
-And repeat
-
+Run the image
+```bash
+docker run -p 8080:8080 talibox
 ```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo.
-
-
-
-## 🎈 Usage <a name="usage"></a>
-
-Add notes about how to use the system.
-
-## 🚀 Deployment <a name = "deployment"></a>
-
-Add additional notes about how to deploy this on a live system.
-
-## ⛏️ Built Using <a name = "built_using"></a>
-
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
-
-## ✍️ Authors <a name = "authors"></a>
-
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
-
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
